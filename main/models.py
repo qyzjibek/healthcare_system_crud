@@ -8,7 +8,7 @@ class Country(models.Model):
         db_table = 'country'
 
 class Users(models.Model):
-    email = models.CharField(max_length=60, primary_key=True)
+    email = models.CharField(max_length=60, primary_key=True, db_column='email')
     name = models.CharField(max_length=30)
     surname = models.CharField(max_length=40)
     salary = models.IntegerField()

@@ -104,8 +104,8 @@
             {% for record in records %}
                 <tr>
                     <td>{{ record.email }}</td>
-                    <td>{{ record.cname }}</td>
-                    <td>{{ record.disease_code }}</td>
+                    <td>{{ record.cname.cname }}</td>
+                    <td>{{ record.disease_code.disease_code }}</td>
                     <td>{{ record.total_deaths }}</td>
                     <td>{{ record.total_patients }}</td>
                     <td class="actions">
