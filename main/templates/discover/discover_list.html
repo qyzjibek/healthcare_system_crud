@@ -1,0 +1,26 @@
+<h1>Discoveries</h1>
+<a href="{% url 'discover_create' %}">Add Discovery</a>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Country</th>
+            <th>Disease Code</th>
+            <th>First Encounter Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for discover in discoveries %}
+        <tr>
+            <td>{{ discover.cname.cname }}</td>
+            <td>{{ discover.disease_code.disease_code }}</td>
+            <td>{{ discover.first_enc_date }}</td>
+            <td>
+                <a href="{% url 'discover_update' discover.cname.cname discover.disease_code.disease_code %}">Edit</a>
+                <a href="{% url 'discover_delete' discover.cname.cname discover.disease_code.disease_code %}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>

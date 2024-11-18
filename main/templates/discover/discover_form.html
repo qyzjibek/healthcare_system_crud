@@ -1,0 +1,33 @@
+<h1>{% if discover %}Edit Discovery{% else %}Add Discovery{% endif %}</h1>
+
+<form method="post">
+    {% csrf_token %}
+    <div>
+        <label for="cname">Country:</label>
+        <select id="cname" name="cname" required>
+            {% for country in countries %}
+            <option value="{{ country.cname }}" 
+                {% if discover and discover.cname.cname == country.cname %}selected{% endif %}>
+                {{ country.cname }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="disease_code">Disease Code:</label>
+        <select id="disease_code" name="disease_code" required>
+            {% for disease in diseases %}
+            <option value="{{ disease.disease_code }}" 
+                {% if discover and discover.disease_code.disease_code == disease.disease_code %}selected{% endif %}>
+                {{ disease.disease_code }}
+            </option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
+        <label for="first_enc_date">First Encounter Date:</label>
+        <input type="date" id="first_enc_date" name="first_enc_date" 
+               value="{{ discover.first_enc_date|date:'Y-m-d' if discover else '' }}" required>
+    </div>
+    <button type="submit">{% if discover %}Update{% else %}Add{% endif %}</button>
+</form>

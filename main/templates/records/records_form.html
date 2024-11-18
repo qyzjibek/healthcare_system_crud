@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if record %}Edit Record{% else %}Create Record{% endif %}</title>
+</head>
+<body>
+    <h1>{% if record %}Edit Record{% else %}Create Record{% endif %}</h1>
+    
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div>
+            <label for="email">Email:</label>
+            {% with user_email=user.email %}
+                <input type="email" id="email" name="email" value="{{ user_email|default:'' }}" required>
+            {% endwith %}
+        </div>
+
+        <div>
+            <label for="cname">Country:</label>
+            <select id="cname" name="cname" required>
+                {% for country in countries %}
+                    <option value="{{ country.cname }}" {% if user and user.cname == country.cname %}selected{% endif %}>{{ country.cname }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="disease_code">Disease Code:</label>
+            <select id="disease_code" name="disease_code" required>
+                {% for disease in diseases %}
+                    <option value="{{ disease.disease_code }}" {% if record and record.disease_code == disease.disease_code %}selected{% endif %}>{{ disease.disease_code }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div>
+            <label for="total_deaths">Total Deaths:</label>
+            <input type="number" id="total_deaths" name="total_deaths" value="{{ record.total_deaths|default:'' }}" required>
+        </div>
+
+        <div>
+            <label for="total_patients">Total Patients:</label>
+            <input type="number" id="total_patients" name="total_patients" value="{{ record.total_patients|default:'' }}" required>
+        </div>
+
+        <div>
+            <button type="submit">{% if record %}Update Record{% else %}Create Record{% endif %}</button>
+        </div>
+    </form>
+
+    <br>
+    <a href="{% url 'record_list' %}">Back to Record List</a>
+</body>
+</html>

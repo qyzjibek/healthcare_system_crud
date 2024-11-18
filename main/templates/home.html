@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #4CAF50;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        .link-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 400px;
+            align-items: center;
+        }
+
+        .link-container a {
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 12px 20px;
+            text-decoration: none;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .link-container a:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Welcome to the Healthcare System</h1>
+    <p>Your central hub for managing healthcare data efficiently.</p>
+
+    <div class="link-container">
+        <a href="{% url 'country_list' %}">Go to Countries List</a>
+        <a href="{% url 'user_list' %}">Go to Users List</a>
+        <a href="{% url 'record_list' %}">Go to Records List</a>
+    </div>
+
+    <footer>
+        &copy; 2024 Healthcare Syste by zhibek.rakhymbekkyzy@nu.edu.kz. All rights reserved.
+    </footer>
+</body>
+
+</html>

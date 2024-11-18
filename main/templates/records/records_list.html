@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        a {
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        table thead {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        table th, table td {
+            text-align: left;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+
+        table tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        table tbody tr:hover {
+            background-color: #e9f5e9;
+        }
+
+        table tbody td a {
+            margin-right: 10px;
+        }
+
+        table tbody td a:hover {
+            color: #2e7d32;
+        }
+
+        .actions a {
+            color: #d32f2f;
+        }
+
+        .actions a:hover {
+            color: #b71c1c;
+        }
+
+        .add-record {
+            display: block;
+            width: max-content;
+            margin: 10px auto;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .add-record:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <h1>Record List</h1>
+    <a href="{% url 'record_create' %}" class="add-record">Add Record</a>
+    <table>
+        <thead>
+            <tr>
+                <th>Email</th>
+                <th>Country</th>
+                <th>Disease</th>
+                <th>Total Deaths</th>
+                <th>Total Patients</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in records %}
+                <tr>
+                    <td>{{ record.email }}</td>
+                    <td>{{ record.cname }}</td>
+                    <td>{{ record.disease_code }}</td>
+                    <td>{{ record.total_deaths }}</td>
+                    <td>{{ record.total_patients }}</td>
+                    <td class="actions">
+                        <a href="{% url 'record_update' record.record_pkey %}">Edit</a>
+                        <a href="{% url 'record_delete' record.record_pkey %}">Delete</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6" style="text-align: center;">No records available.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

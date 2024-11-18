@@ -1,0 +1,7 @@
+<h1>{% if country %}Edit Country{% else %}Add Country{% endif %}</h1>
+<form method="post">
+    {% csrf_token %}
+    <input type="text" name="cname" placeholder="Name" value="{{ country.cname }}" {% if country %}readonly{% endif %}><br>
+    <input type="text" name="population" placeholder="Population" value="{{ country.population }}"><br>
+    <button type="submit">Save</button>
+</form>
